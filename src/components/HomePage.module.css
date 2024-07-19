@@ -1,0 +1,35 @@
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.title {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.photo {
+  margin: 0 auto;
+}
+
+.companyName {
+  color: #e44848;
+}
+
+.btn {
+  display: block;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 18px;
+  width: 173px;
+  height: 56px;
+  border-radius: 200px;
+  border: none;
+  background-color: #e44848;
+  color: #f7f7f7;
+  margin: 0 auto;
+  margin-top: 15px;
+  cursor: pointer;
+}

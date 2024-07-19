@@ -1,6 +1,6 @@
-// import css from './Header.module.css';
+// import css from './HomePage.module.css';
 
-export default function Header() {
+export default function HomePage() {
   {
     return (
       <>

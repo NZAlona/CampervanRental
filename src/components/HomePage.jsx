@@ -1,4 +1,5 @@
 import css from './HomePage.module.css';
+import photo from '../image/Vehicles_Sweden_Campervan_blanco.png';
 // import { NavLink } from 'react-router-dom';
 
 export default function HomePage() {
@@ -21,10 +22,11 @@ export default function HomePage() {
           </button>
 
           <img
-            src="/public/Vehicles_Sweden_Campervan_blanco.png"
+            src={photo}
             width="850"
             height="550"
             className={css.photo}
+            alt="photo of campervan"
           />
         </section>
       </>

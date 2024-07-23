@@ -4,3 +4,9 @@
   padding: 2rem;
   text-align: center;
 }
+
+.wrapper {
+  margin-left: 20px;
+  max-width: 1440px;
+  margin: 0 auto;
+}

@@ -1,14 +1,13 @@
-.wrapper {
-  max-width: 1440px;
-  margin: 0 auto;
-  /* display: flex;
+/* .wrapper {
+  /* max-width: 1440px;
+  margin: 0 auto; */
+/* display: flex;
   justify-content: center; */
-}
 
 .title {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  margin-top: 15px;
   text-align: center;
+  line-height: 1.4;
 }
 
 .photo {
@@ -29,7 +28,13 @@
   border: none;
   background-color: #e44848;
   color: #f7f7f7;
-  margin: 0 auto;
   margin-top: 15px;
   cursor: pointer;
+}
+
+.linkReset {
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
 }

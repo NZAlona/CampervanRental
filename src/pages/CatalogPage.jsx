@@ -1,9 +1,10 @@
 // import css from '../components/CatalogPage.module.css';
+import Location from '../components/Location';
 
 export default function CatalogPage() {
   return (
     <>
-      <p>This will be a page with campervans</p>
+      <Location />
     </>
   );
 }

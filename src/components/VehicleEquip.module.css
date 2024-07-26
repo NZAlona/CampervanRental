@@ -1,0 +1,61 @@
+.gap {
+  width: 360px;
+  margin-bottom: 14px;
+}
+
+.title {
+  width: 360px;
+  margin-bottom: 24px;
+}
+
+.line {
+  margin: 0;
+  width: 360px;
+  border: none;
+  display: block;
+  border-top: 1px solid rgba(16, 24, 40, 0.1);
+  margin-left: 0;
+  margin-bottom: 24px;
+}
+.txt {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  /* font-family: Inter; */
+}
+
+.item {
+  display: block;
+  width: 112px;
+  height: 95px;
+  border-radius: 10px;
+  border: 1px solid rgba(16, 24, 40, 0.1);
+  padding: 17px 40px 17px 40px;
+}
+
+.check {
+  display: none;
+  cursor: pointer;
+}
+
+.icon {
+  fill: none;
+  stroke: black;
+}
+
+.checkBoxList {
+  width: 360px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.spn {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.1;
+}

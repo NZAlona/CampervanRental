@@ -1,5 +1,5 @@
-export const selectItems = state => state.advert.items;
+export const selectItems = state => state.vans.items;
 
-export const selectLoading = state => state.advert.loading;
+export const selectLoading = state => state.vans.loading;
 
-export const selectError = state => state.advert.error;
+export const selectError = state => state.vans.error;

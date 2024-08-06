@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+// import { incrementPage, setDisableMore } from './slice';
 
 axios.defaults.baseURL = 'https://66a30dc544aa6370457fa9f5.mockapi.io';
 
@@ -9,9 +10,38 @@ const options = {
   },
 };
 
-export const fetchCampervans = createAsyncThunk('advert/fetchVans', async (_, thunkAPI) => {
+// export const fetchCampervans = createAsyncThunk(
+//   'vans/fetchVans',
+//   async ({ page = 1, limit = 4 }, thunkAPI) => {
+//     try {
+//       const response = await axios.get(`/advert`, {
+//         params: {
+//           page,
+//           limit,
+//         },
+//         headers: options.headers,
+//       });
+
+//       if (response.data.length >= limit) {
+//         thunkAPI.dispatch(incrementPage());
+//       } else {
+//         thunkAPI.dispatch(setDisableMore(true));
+//       }
+
+//       console.log(response.data);
+//       return response.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
+
+export const fetchCampervans = createAsyncThunk('vans/fetchVans', async (_, thunkAPI) => {
   try {
-    const response = await axios.get(`/advert`, options);
+    const response = await axios.get(`/advert`, {
+      options,
+    });
+
     console.log(response.data);
     return response.data;
   } catch (e) {

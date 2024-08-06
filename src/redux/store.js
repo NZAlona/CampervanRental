@@ -14,16 +14,16 @@ import storage from 'redux-persist/lib/storage';
 import { campervansReducer } from './slice';
 
 const carsPersistConfig = {
-  key: 'carsSlice',
+  key: 'root',
   storage,
-  whitelist: ['token'],
+  whitelist: ['vans'],
 };
 
 const persistedCarsReducer = persistReducer(carsPersistConfig, campervansReducer);
 
 export const store = configureStore({
   reducer: {
-    auth: persistedCarsReducer,
+    vans: persistedCarsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

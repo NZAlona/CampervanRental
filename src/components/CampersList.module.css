@@ -14,6 +14,14 @@
   display: inline-flex;
 }
 
+.container {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
 .photo {
   border-radius: 10px;
   width: 290px;
@@ -108,16 +116,20 @@
   border-radius: 100px;
   color: white;
   display: block;
+  cursor: pointer;
 }
 
 .load {
   width: 148px;
-  height: 46px;
   background-color: white;
   border-radius: 100px;
   border: 1px solid rgba(16, 24, 40, 0.1);
   padding: 16px 32px 16px 32px;
   font-weight: bold;
   font-size: 16px;
-  margin: 0 auto;
+  cursor: pointer;
+}
+
+.load.hidden {
+  display: none;
 }

@@ -3,12 +3,22 @@ import svg from '../../public/symbol-defs.svg';
 import { FaStar } from 'react-icons/fa6';
 import { SlLocationPin } from 'react-icons/sl';
 import VansFeature from './VansFeature';
+import { selectItems } from '../redux/selectors';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-export default function CampersList({ listCampers, onLoadMore, displayVans }) {
+export default function CampersList() {
+  const campers = useSelector(selectItems);
+  const [displayVans, setDispalyVans] = useState(4);
+
+  const handleLoadMore = () => {
+    setDispalyVans(prevVans => prevVans + 4);
+  };
+
   return (
     <>
       <ul className={css.list}>
-        {listCampers.slice(0, displayVans).map(camper => (
+        {campers.slice(0, displayVans).map(camper => (
           <li key={camper._id} className={css.item}>
             <div>
               <img src={camper.gallery[0]} className={css.photo} alt="photo of campervan" />
@@ -42,11 +52,16 @@ export default function CampersList({ listCampers, onLoadMore, displayVans }) {
             </div>
           </li>
         ))}
-        {displayVans < listCampers.length && (
-          <button className={css.load} onClick={onLoadMore}>
-            Load more
-          </button>
-        )}
+        <div className={css.container}>
+          {displayVans < campers.length && (
+            <button
+              className={`${css.load} ${displayVans >= campers.length ? css.hidden : ''}`}
+              onClick={handleLoadMore}
+            >
+              Load more
+            </button>
+          )}
+        </div>
       </ul>
     </>
   );

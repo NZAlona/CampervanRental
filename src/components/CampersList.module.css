@@ -51,6 +51,7 @@
   stroke: black;
   fill: white;
   margin-left: 8px;
+  cursor: pointer;
 }
 
 .alighment {
@@ -132,4 +133,9 @@
 
 .load.hidden {
   display: none;
+}
+
+.favorite {
+  fill: #e44848;
+  stroke: #e44848;
 }

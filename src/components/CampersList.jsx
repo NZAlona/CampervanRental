@@ -4,15 +4,36 @@ import { FaStar } from 'react-icons/fa6';
 import { SlLocationPin } from 'react-icons/sl';
 import VansFeature from './VansFeature';
 import { selectItems } from '../redux/selectors';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 export default function CampersList() {
   const campers = useSelector(selectItems);
   const [displayVans, setDispalyVans] = useState(4);
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    // Загружаем избранные из localStorage при инициализации компонента
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(savedFavorites);
+  }, []);
 
   const handleLoadMore = () => {
     setDispalyVans(prevVans => prevVans + 4);
+  };
+
+  const handleFavoriteClick = camper => {
+    const isAlreadyFavorite = favorites.some(fav => fav._id === camper._id);
+    let updatedFavorites;
+
+    if (isAlreadyFavorite) {
+      updatedFavorites = favorites.filter(fav => fav._id !== camper._id);
+    } else {
+      updatedFavorites = [...favorites, camper];
+    }
+
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
   return (
@@ -28,7 +49,14 @@ export default function CampersList() {
                 <h3 className={css.txt}>{camper.name}</h3>
                 <span className={css.alighment}>
                   <p className={css.txt}> &#x20AC;{camper.price + ',00'}</p>
-                  <svg width={24} height={24} className={css.icon}>
+                  <svg
+                    width={24}
+                    height={24}
+                    className={`${css.icon} ${
+                      favorites.some(fav => fav._id === camper._id) ? css.favorite : ''
+                    }`}
+                    onClick={() => handleFavoriteClick(camper)}
+                  >
                     <use href={svg + '#icon-heart'}></use>
                   </svg>
                 </span>

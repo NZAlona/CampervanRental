@@ -4,3 +4,150 @@
   margin-top: 120px;
   text-align: center;
 }
+
+.list {
+  width: 888px;
+  height: 358px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.item {
+  border: 1px solid rgba(16, 24, 40, 0.1);
+  border-radius: 10px;
+  padding: 24px;
+  display: inline-flex;
+}
+
+.container {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.photo {
+  border-radius: 10px;
+  width: 290px;
+  height: 310px;
+  object-fit: cover;
+  margin-right: 24px;
+}
+
+.wrapper {
+  width: 528px;
+  /* height: 310px; */
+}
+
+.positioning {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.txt {
+  font-weight: bold;
+  font-size: 24px;
+  /* font-family: Inter; */
+}
+
+.icon {
+  stroke: black;
+  fill: white;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.alighment {
+  display: flex;
+  align-items: center;
+}
+
+.color {
+  margin-right: 7px;
+  font-size: 16px;
+}
+
+.space {
+  border-bottom: 1px solid black;
+  font-size: 16px;
+  color: rgba(16, 24, 40, 1);
+}
+
+.parag {
+  width: fit-content;
+}
+
+.layout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  /* font-family: Inter; */
+  margin-bottom: 24px;
+}
+
+.featureIcons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 126px;
+  height: 44px;
+  border-radius: 100px;
+  background-color: rgba(242, 244, 247, 1);
+}
+
+.icn {
+  margin-right: 3px;
+}
+
+.aut {
+  fill: none;
+  stroke: black;
+}
+
+.btn {
+  width: 166px;
+  height: 56px;
+  background-color: #e44848;
+  border: none;
+  border-radius: 100px;
+  color: white;
+  display: block;
+  cursor: pointer;
+}
+
+.load {
+  width: 148px;
+  background-color: white;
+  border-radius: 100px;
+  border: 1px solid rgba(16, 24, 40, 0.1);
+  padding: 16px 32px 16px 32px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.load.hidden {
+  display: none;
+}
+
+.favorite {
+  fill: #e44848;
+  stroke: #e44848;
+}
+
+.cont {
+  display: flex;
+  justify-content: center;
+}

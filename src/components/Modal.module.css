@@ -1,0 +1,37 @@
+.picture {
+  border-radius: 10px;
+  width: 290px;
+  height: 310px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 24px;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.wrapper {
+  width: 902px;
+  padding: 40px 40px 40px 40px;
+  margin: 0 auto;
+}
+
+.position {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.text {
+  text-align: justify;
+  font-size: 16px;
+}

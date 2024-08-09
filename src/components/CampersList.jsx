@@ -6,11 +6,15 @@ import VansFeature from './VansFeature';
 import { selectItems } from '../redux/selectors';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import CamperModal from './Modal';
 
 export default function CampersList() {
   const campers = useSelector(selectItems);
   const [displayVans, setDispalyVans] = useState(4);
   const [favorites, setFavorites] = useState([]);
+
+  const [open, setOpen] = useState(false);
+  const [selectedCamper, setSelectedCamper] = useState(null);
 
   useEffect(() => {
     // Загружаем избранные из localStorage при инициализации компонента
@@ -34,6 +38,16 @@ export default function CampersList() {
 
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
+
+  const handleOpen = camper => {
+    setSelectedCamper(camper);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedCamper(null);
   };
 
   return (
@@ -76,7 +90,9 @@ export default function CampersList() {
               <p className={css.description}>{camper.description}</p>
 
               <VansFeature features={camper} />
-              <button className={css.btn}>See more</button>
+              <button className={css.btn} onClick={() => handleOpen(camper)}>
+                See more
+              </button>
             </div>
           </li>
         ))}
@@ -91,6 +107,7 @@ export default function CampersList() {
           )}
         </div>
       </ul>
+      <CamperModal open={open} handleClose={handleClose} camper={selectedCamper} />
     </>
   );
 }

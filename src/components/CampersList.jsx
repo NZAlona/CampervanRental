@@ -17,7 +17,7 @@ export default function CampersList() {
   const [selectedCamper, setSelectedCamper] = useState(null);
 
   useEffect(() => {
-    // Загружаем избранные из localStorage при инициализации компонента
+    // Загружаем из localStorage при инициализации компонента
     const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(savedFavorites);
   }, []);

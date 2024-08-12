@@ -29,3 +29,7 @@
 .spn {
   text-transform: capitalize;
 }
+
+.extraStyle {
+  width: max-content;
+}

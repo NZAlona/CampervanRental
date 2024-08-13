@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles';
 import { Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import VansFeature from './VansFeature';
+import BookForm from './BookForm';
 
 const style = {
   position: 'absolute',
@@ -17,8 +18,10 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
-  height: '700px',
-  overflowY: 'auto',
+  maxHeight: '85vh',
+  //   height: '700px',
+  overflow: 'scroll',
+  borderRadius: '20px',
 };
 
 const AntTabs = styled(Tabs)({
@@ -94,12 +97,39 @@ export default function CamperModal({ open, handleClose, camper }) {
               {activeTab === 'features' && (
                 <div role="tabpanel" aria-labelledby="features-tab">
                   <VansFeature features={camper} />
+                  <h3 className={css.title}>Vehicle details</h3>
+                  <span className={css.line}></span>
+                  <ul>
+                    <li className={css.item}>
+                      <p> Form</p>
+                      <p className={css.txt}>{camper.form}</p>
+                    </li>
+                    <li className={css.item}>
+                      <p> Length</p>
+                      <p>{camper.length}</p>
+                    </li>
+                    <li className={css.item}>
+                      <p> Width</p>
+                      <p>{camper.width}</p>
+                    </li>
+                    <li className={css.item}>
+                      <p>Height</p>
+                      <p>{camper.height}</p>
+                    </li>
+                    <li className={css.item}>
+                      <p>Tank</p>
+                      <p>{camper.tank}</p>
+                    </li>
+                    <li className={css.item}>
+                      <p>Consumption</p>
+                      <p>{camper.consumption}</p>
+                    </li>
+                  </ul>
                 </div>
               )}
               {activeTab === 'reviews' && <div role="tabpanel" aria-labelledby="reviews-tab"></div>}
+              <BookForm />
             </div>
-            <h3 className={css.title}>Vehicle details</h3>
-            <span className={css.line}></span>
           </Box>
         </Modal>
       </div>

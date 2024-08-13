@@ -18,6 +18,7 @@
   width: 902px;
   padding: 40px 40px 40px 40px;
   margin: 0 auto;
+  border-radius: 20px;
 }
 
 .position {
@@ -45,19 +46,31 @@
 
 .tabWrapper {
   width: 430px;
-  margin-bottom: 44px;
+  /* margin-bottom: 44px; */
   padding-left: 32px;
+  display: flex;
 }
 
 .title {
-  padding-left: 32px;
+  /* padding-left: 32px; */
   margin-bottom: 24px;
 }
 
 .line {
   display: block;
   width: 430px;
-  margin-left: 32px;
+  /* margin-left: 32px; */
   border-bottom: 1px solid rgba(16, 24, 40, 0.1);
   margin-bottom: 24px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  font-weight: bold;
+}
+
+.txt {
+  text-transform: capitalize;
 }

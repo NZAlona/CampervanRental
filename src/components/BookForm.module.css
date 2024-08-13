@@ -1,0 +1,48 @@
+.wrapper {
+  border-radius: 4px;
+  border: 1px solid rgba(16, 24, 40, 0.1);
+  padding: 24px;
+}
+
+.frm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.field {
+  height: 56px;
+  width: 400px;
+  border-radius: 10px;
+  padding: 18px 18px 18px;
+  background-color: rgba(247, 247, 247, 1);
+  border: transparent;
+}
+
+.comment {
+  resize: none;
+  border-radius: 10px;
+  background-color: rgba(247, 247, 247, 1);
+  border: transparent;
+  padding: 18px 18px 18px;
+}
+
+.error {
+  height: 0px;
+  color: red;
+  font-size: 12px;
+  text-align: left;
+}
+
+.formGroup {
+  position: relative;
+}
+
+.errorContainer {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

@@ -8,6 +8,7 @@ import { Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import VansFeature from './VansFeature';
 import BookForm from './BookForm';
+import Rating from '../components/Rating';
 
 const style = {
   position: 'absolute',
@@ -127,7 +128,28 @@ export default function CamperModal({ open, handleClose, camper }) {
                   </ul>
                 </div>
               )}
-              {activeTab === 'reviews' && <div role="tabpanel" aria-labelledby="reviews-tab"></div>}
+              {activeTab === 'reviews' && (
+                <div role="tabpanel" aria-labelledby="reviews-tab">
+                  <ul className={css.listReview}>
+                    {camper.reviews.map((review, index) => (
+                      <li key={index}>
+                        <div className={css.container}>
+                          <div className={css.wrapperLetter}>
+                            <span className={css.nameLetter}>{review.reviewer_name[0]}</span>
+                          </div>
+
+                          <div className={css.wrapperName}>
+                            <h3>{review.reviewer_name}</h3>
+                            <Rating rating={review.reviewer_rating} />
+                          </div>
+                        </div>
+
+                        <p className={css.review}>{review.comment}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <BookForm />
             </div>
           </Box>

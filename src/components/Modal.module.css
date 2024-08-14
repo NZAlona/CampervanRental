@@ -16,7 +16,8 @@
 
 .wrapper {
   width: 902px;
-  padding: 40px 40px 40px 40px;
+  /* padding-top: 40px; */
+  padding-bottom: 40px;
   margin: 0 auto;
   border-radius: 20px;
 }
@@ -46,9 +47,8 @@
 
 .tabWrapper {
   width: 430px;
-  /* margin-bottom: 44px; */
-  padding-left: 32px;
   display: flex;
+  gap: 24px;
 }
 
 .title {

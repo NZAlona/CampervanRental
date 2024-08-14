@@ -1,7 +1,8 @@
 .wrapper {
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid rgba(16, 24, 40, 0.1);
   padding: 24px;
+  height: 520px;
 }
 
 .frm {
@@ -16,7 +17,14 @@
   border-radius: 10px;
   padding: 18px 18px 18px;
   background-color: rgba(247, 247, 247, 1);
-  border: transparent;
+  border: 1px solid lightgray;
+  outline: none;
+  transition: border-color 0.1s, box-shadow 0.1s;
+}
+
+.field:focus {
+  border-color: blue;
+  box-shadow: 0 0 0 2px rgba(0, 0, 255, 0.5);
 }
 
 .comment {
@@ -25,6 +33,15 @@
   background-color: rgba(247, 247, 247, 1);
   border: transparent;
   padding: 18px 18px 18px;
+  margin-bottom: 14px;
+  border: 1px solid lightgray;
+  outline: none;
+  transition: border-color 0.1s, box-shadow 0.1s;
+}
+
+.comment:focus {
+  border-color: blue;
+  box-shadow: 0 0 0 2px rgba(0, 0, 255, 0.5);
 }
 
 .error {
@@ -45,4 +62,26 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.title {
+  width: 257px;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.text {
+  margin-bottom: 24px;
+  font-size: 16px;
+  width: 400px;
+}
+
+.btn {
+  display: block;
+  width: 160px;
+  height: 56px;
+  color: white;
+  background-color: rgba(228, 72, 72, 1);
+  border: transparent;
+  border-radius: 100px;
 }

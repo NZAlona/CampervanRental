@@ -17,5 +17,17 @@ https://www.figma.com/design/fnMWH0eBB7NnoqdAiiKWsQ/Test?node-id=0-1&t=QCsQf3g6y
 
 # Tech stack:
 
-The combination of React.js, Redux, JavaScript, Material-UI, Axios, Formik, React Icons, and MockAPI
+The combination of React.js, Redux, JavaScript, Material-UI, Axios, Formik, React Icons and MockAPI
 ensures that the CampervanRental application is both powerful and user-friendly.
+
+# To start working with the CampervanRental App:
+
+1. Clone the Repository: Open your terminal and run the following command to clone the repository to
+   your local machine: git clone https://github.com/NZAlona/CampervanRental.git
+
+2. Install Dependencies: Navigate to the project directory and install all required dependencies
+   using npm: cd CampervanRental npm install
+
+3. Run the Application: Start the development server by running: npm run dev The application should
+   now be running locally. Open your web browser and go to http://localhost:3000 (or the port
+   specified in your configuration) to view the app.

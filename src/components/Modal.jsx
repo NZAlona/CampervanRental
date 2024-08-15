@@ -59,8 +59,14 @@ export default function CamperModal({ open, handleClose, camper }) {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
+            <div className={css.closeWrapper}>
+              <span className={css.close} onClick={handleClose}>
+                X
+              </span>
+            </div>
             <div className={css.wrapper}>
               <h2 id="modal-modal-title">{camper.name}</h2>
+
               <div className={css.position}>
                 <p>
                   <FaStar color="rgba(255, 197, 49, 1)" size={16} /> {camper.rating} (2 Reviews)

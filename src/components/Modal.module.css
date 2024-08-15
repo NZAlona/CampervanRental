@@ -112,3 +112,19 @@
   text-align: justify;
   margin-bottom: 24px;
 }
+
+.closeWrapper {
+  position: relative;
+}
+
+.close {
+  font-weight: bold;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bolder;
+  width: 20px;
+  padding: 0px 25px 15px 15px;
+  cursor: pointer;
+}

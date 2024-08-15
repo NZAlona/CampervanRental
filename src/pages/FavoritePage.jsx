@@ -4,15 +4,29 @@ import { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa6';
 import { SlLocationPin } from 'react-icons/sl';
 import VansFeature from '../components/VansFeature';
+import CamperModal from '../components/Modal';
 
 export default function FavoritePage() {
   const [favorites, setFavorites] = useState([]);
+
+  const [open, setOpen] = useState(false);
+  const [selectedCamper, setSelectedCamper] = useState(null);
 
   useEffect(() => {
     // Загрузка данных из localStorage при инициализации компонента
     const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(savedFavorites);
   }, []);
+
+  const handleOpen = camper => {
+    setSelectedCamper(camper);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedCamper(null);
+  };
 
   const handleFavoriteClick = camper => {
     const isAlreadyFavorite = favorites.some(fav => fav._id === camper._id);
@@ -69,7 +83,9 @@ export default function FavoritePage() {
                   <p className={css.description}>{camper.description}</p>
 
                   <VansFeature features={camper} />
-                  <button className={css.btn}>See more</button>
+                  <button className={css.btn} onClick={() => handleOpen(camper)}>
+                    See more
+                  </button>
                 </div>
               </li>
             ))
@@ -80,6 +96,7 @@ export default function FavoritePage() {
             </h1>
           )}
         </ul>
+        <CamperModal open={open} handleClose={handleClose} camper={selectedCamper} />
       </div>
     </>
   );

@@ -10,32 +10,6 @@ const options = {
   },
 };
 
-// export const fetchCampervans = createAsyncThunk(
-//   'vans/fetchVans',
-//   async ({ page = 1, limit = 4 }, thunkAPI) => {
-//     try {
-//       const response = await axios.get(`/advert`, {
-//         params: {
-//           page,
-//           limit,
-//         },
-//         headers: options.headers,
-//       });
-
-//       if (response.data.length >= limit) {
-//         thunkAPI.dispatch(incrementPage());
-//       } else {
-//         thunkAPI.dispatch(setDisableMore(true));
-//       }
-
-//       console.log(response.data);
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
-
 export const fetchCampervans = createAsyncThunk('vans/fetchVans', async (_, thunkAPI) => {
   try {
     const response = await axios.get(`/advert`, {

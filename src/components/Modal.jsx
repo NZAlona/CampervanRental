@@ -20,7 +20,6 @@ const style = {
   boxShadow: 24,
   p: 4,
   maxHeight: '85vh',
-  //   height: '700px',
   overflow: 'scroll',
   borderRadius: '20px',
 };

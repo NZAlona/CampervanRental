@@ -17,11 +17,15 @@
   margin-left: 0;
   margin-bottom: 24px;
 }
+
 .txt {
   display: flex;
   justify-content: center;
   font-weight: bold;
   font-size: 16px;
+  line-height: 1.1;
+  text-align: center;
+
   /* font-family: Inter; */
 }
 
@@ -32,10 +36,6 @@
   border-radius: 10px;
   border: 1px solid rgba(16, 24, 40, 0.1);
   padding: 17px 40px 17px 40px;
-}
-
-.check {
-  display: none;
   cursor: pointer;
 }
 
@@ -58,4 +58,74 @@
   text-align: center;
   font-weight: bold;
   line-height: 1.1;
+}
+
+.wrapper {
+  position: relative;
+  margin-top: 8px;
+}
+
+.container {
+  padding-top: 20px;
+  max-width: 360px;
+  margin-bottom: 32px;
+}
+
+.lbl {
+  color: #101828;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+  /* font-family: Inter; */
+}
+
+.inp {
+  display: block;
+  height: 56px;
+  width: 360px;
+  outline: transparent;
+  border: none;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  padding-left: 46px;
+}
+
+.iconContainer {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 20px;
+}
+
+.iconS {
+  font-size: 20px;
+  margin-left: 18px;
+}
+
+.check {
+  display: none;
+  cursor: pointer;
+}
+
+.checked {
+  border: 2px solid rgba(228, 72, 72, 1);
+}
+
+.padd {
+  padding: 20px 19px 20px 0px;
+}
+
+.btn {
+  display: block;
+  font-size: 16px;
+  width: 173px;
+  height: 56px;
+  border-radius: 200px;
+  border: none;
+  background-color: #e44848;
+  color: #f7f7f7;
+  margin-top: 64px;
+  cursor: pointer;
+  padding: 16px 60px 16px 60px;
 }

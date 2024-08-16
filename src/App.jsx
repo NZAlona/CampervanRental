@@ -11,7 +11,7 @@ function App() {
       <div className={css.wrapper}>
         <AppBar />
 
-        {/* /* First create Routes(Route) and then above add navigation to different our pages via nav and NavLink * */}
+        {/* /* First create Routes(Route) and then add above navigation to different  pages via nav and NavLink * */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/catalog" element={<CatalogPage />} />

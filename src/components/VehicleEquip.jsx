@@ -25,9 +25,9 @@ export default function VehicleEquip() {
   const [filters, setFilters] = useState({
     AC: false,
     Automatic: false,
-    Kitchen: false,
+    kitchen: false,
     TV: false,
-    Shower: false,
+    shower: false,
     carType: '',
     location: '',
   });
@@ -62,18 +62,36 @@ export default function VehicleEquip() {
   const handleSearch = () => {
     const results = allVehicles.filter(vehicle => {
       const matchesEquipment = Object.keys(filters).every(filter => {
-        if (filter !== 'carType' && filter !== 'location') {
-          return !filters[filter] || vehicle.equipment.includes(filter);
+        switch (filter) {
+          case 'AC':
+            if (
+              filters[filter] === true &&
+              filters[filter] !== Boolean(vehicle.details['airConditioner'])
+            )
+              return false;
+            break;
+          case 'Automatic':
+            if (filters[filter] && vehicle.transmission.toLowerCase() !== filter.toLowerCase())
+              return false;
+            break;
+          case 'carType':
+            if (filters[filter].toLowerCase().replace(/\s/g, '') !== vehicle.form.toLowerCase())
+              return false;
+            break;
+
+          default:
+            if (filter === 'location') {
+              if (!vehicle.location.toLowerCase().includes(filters.location.toLowerCase()))
+                return false;
+            } else {
+              if (filters[filter] === true && filters[filter] !== Boolean(vehicle.details[filter]))
+                return false;
+            }
         }
         return true;
       });
 
-      const matchesCarType = filters.carType ? vehicle.type === filters.carType : true;
-      const matchesLocation = filters.location
-        ? vehicle.location.toLowerCase().includes(filters.location.toLowerCase())
-        : true;
-
-      return matchesEquipment && matchesCarType && matchesLocation;
+      return matchesEquipment;
     });
 
     console.log('Filtered Vehicles:', results);
@@ -104,20 +122,27 @@ export default function VehicleEquip() {
       <hr className={css.line} />
 
       <ul className={css.checkBoxList}>
-        {['AC', 'Automatic', 'Kitchen', 'TV', 'Shower'].map(equipment => (
+        {['AC', 'Automatic', 'kitchen', 'TV', 'shower'].map(equipment => (
           <li key={equipment} className={`${css.item} ${filters[equipment] ? css.checked : ''}`}>
             <label className={css.padd}>
               <input
                 type="checkbox"
                 name={equipment}
+                value={equipment}
                 checked={filters[equipment]}
                 onChange={handleCheckboxChange}
                 className={css.check}
               />
               <svg width={32} height={32} className={css.icon}>
-                <use href={`${svg}#${equipmentIcons[equipment]}`} />
+                <use
+                  href={`${svg}#${
+                    equipmentIcons[equipment.charAt(0).toUpperCase() + equipment.slice(1)]
+                  }`}
+                />
               </svg>
-              <span className={`${css.txt} ${css.spn}`}>{equipment}</span>
+              <span className={`${css.txt} ${css.spn}`}>
+                {equipment.charAt(0).toUpperCase() + equipment.slice(1)}
+              </span>
             </label>
           </li>
         ))}
@@ -156,8 +181,8 @@ export default function VehicleEquip() {
           {hasSearched ? (
             filteredVehicles.length > 0 ? (
               filteredVehicles.map(vehicle => (
-                <li key={vehicle.id}>
-                  {vehicle.type} - {vehicle.equipment.join(', ')} - {vehicle.location}
+                <li key={vehicle._id}>
+                  {vehicle.form} - {vehicle.location}
                 </li>
               ))
             ) : (
@@ -168,107 +193,4 @@ export default function VehicleEquip() {
       </div>
     </>
   );
-}
-
-{
-  /* <div className={css.container}>
-        <label className={css.lbl}>Location</label>
-        <div className={css.wrapper}>
-          <input
-            type="text"
-            className={css.inp}
-            placeholder="Enter city"
-            value={filters.location}
-            onChange={handleLocationChange}
-          />
-          <div className={css.iconContainer}>
-            <SlLocationPin className={css.iconS} />
-          </div>
-        </div>
-      </div>
-
-      <p className={css.gap}>Filters</p>
-      <h3 className={css.title}>Vehical equipment</h3>
-      <hr className={css.line}></hr>
-
-      <ul className={css.checkBoxList}>
-        <li className={css.item}>
-          <label>
-            <input type="checkbox" name="AC" className={css.check} />
-            <svg width={32} height={32}>
-              <use href={svg + '#icon-AC'}></use>
-            </svg>
-            <span className={css.txt}>AC</span>
-          </label>
-        </li>
-        <li className={css.item}>
-          <label>
-            <input type="checkbox" name="Automatic" className={css.check} />
-            <svg width={32} height={32} className={css.icon}>
-              <use href={svg + '#icon-link'}></use>
-            </svg>
-            <span className={css.txt}>Automatic</span>
-          </label>
-        </li>
-        <li className={css.item}>
-          <label>
-            <input type="checkbox" name="Kitchen" className={css.check} />
-            <svg width={32} height={32} className={css.icon}>
-              <use href={svg + '#icon-fork'}></use>
-            </svg>
-            <span className={css.txt}>Kitchen</span>
-          </label>
-        </li>
-        <li className={css.item}>
-          <label>
-            <input type="checkbox" name="TV" className={css.check} />
-            <svg width={32} height={32} className={css.icon}>
-              <use href={svg + '#icon-tv'}></use>
-            </svg>
-            <span className={css.txt}>TV</span>
-          </label>
-        </li>
-        <li className={css.item}>
-          <label>
-            <input type="checkbox" name="Shower" className={css.check} />
-            <svg width={32} height={32} className={css.icon}>
-              <use href={svg + '#icon-bath'}></use>
-            </svg>
-            <span className={css.txt}>Shower</span>
-          </label>
-        </li>
-      </ul>
-
-      <h3 className={css.title}>Vehical type</h3>
-      <hr className={css.line}></hr>
-
-      <ul className={css.checkBoxList}>
-        <li className={css.item}>
-          <label>
-            <input type="radio" name="carType" value="Van" className={css.check} />
-            <svg width={40} height={28}>
-              <use href={svg + '#icon-cmwin'}></use>
-            </svg>
-            <span className={css.txt}>Van</span>
-          </label>
-        </li>
-        <li className={css.item}>
-          <label>
-            <input type="radio" name="carType" value="Fully integrated" className={css.check} />
-            <svg width={40} height={28}>
-              <use href={svg + '#icon-cmdoor'}></use>
-            </svg>
-            <span className={css.spn}>Fully integrated</span>
-          </label>
-        </li>
-        <li className={css.item}>
-          <label>
-            <input type="radio" name="carType" value="Alcove" className={css.check} />
-            <svg width={40} height={28}>
-              <use href={svg + '#icon-camper'}></use>
-            </svg>
-            <span className={css.txt}>Alcove</span>
-          </label>
-        </li>
-      </ul> */
 }

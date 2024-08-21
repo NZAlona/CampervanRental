@@ -19,6 +19,8 @@ const equipmentTypeIcons = {
   Alcove: 'icon-camper',
 };
 
+// const COUNTRY = 'Ukraine';
+
 export default function VehicleEquip() {
   const allVehicles = useSelector(selectItems);
 
@@ -59,7 +61,13 @@ export default function VehicleEquip() {
     }));
   };
 
+  // const formatLocation = cityName => {
+  //   return `${COUNTRY}, ${cityName}`;
+  // };
+
   const handleSearch = () => {
+    // const formattedLocation = formatLocation(filters.location).toLowerCase();
+
     const results = allVehicles.filter(vehicle => {
       const matchesEquipment = Object.keys(filters).every(filter => {
         switch (filter) {
@@ -75,18 +83,24 @@ export default function VehicleEquip() {
               return false;
             break;
           case 'carType':
-            if (filters[filter].toLowerCase().replace(/\s/g, '') !== vehicle.form.toLowerCase())
+            if (
+              filters.carType !== '' &&
+              filters[filter].toLowerCase().replace(/\s/g, '') !== vehicle.form.toLowerCase()
+            )
+              return false;
+            break;
+          case 'location':
+            if (
+              filters.location !== '' &&
+              !vehicle.location.toLowerCase().includes(filters.location.toLowerCase())
+            )
               return false;
             break;
 
           default:
-            if (filter === 'location') {
-              if (!vehicle.location.toLowerCase().includes(filters.location.toLowerCase()))
-                return false;
-            } else {
-              if (filters[filter] === true && filters[filter] !== Boolean(vehicle.details[filter]))
-                return false;
-            }
+            if (filters[filter] === true && filters[filter] !== Boolean(vehicle.details[filter]))
+              return false;
+            break;
         }
         return true;
       });
@@ -194,3 +208,190 @@ export default function VehicleEquip() {
     </>
   );
 }
+
+// const COUNTRY = 'Ukraine';
+
+// export default function VehicleEquip() {
+//   const allVehicles = useSelector(selectItems);
+
+//   const [filters, setFilters] = useState({
+//     AC: false,
+//     Automatic: false,
+//     kitchen: false,
+//     TV: false,
+//     shower: false,
+//     carType: '',
+//     location: '',
+//   });
+
+//   const [filteredVehicles, setFilteredVehicles] = useState([]);
+//   const [hasSearched, setHasSearched] = useState(false);
+
+//   const handleLocationChange = e => {
+//     const { value } = e.target;
+//     setFilters(prevFilters => ({
+//       ...prevFilters,
+//       location: value,
+//     }));
+//   };
+
+//   const handleCheckboxChange = e => {
+//     const { name, checked } = e.target;
+//     setFilters(prevFilters => ({
+//       ...prevFilters,
+//       [name]: checked,
+//     }));
+//   };
+
+//   const handleRadioChange = e => {
+//     const { value } = e.target;
+//     setFilters(prevFilters => ({
+//       ...prevFilters,
+//       carType: value,
+//     }));
+//   };
+
+//   const formatLocation = cityName => {
+//     return `${COUNTRY}, ${cityName}`;
+//   };
+
+//   const handleSearch = () => {
+//     const formattedLocation = formatLocation(filters.location);
+//     // Фильтруем транспортные средства по местоположению
+//     const locationFilteredVehicles = allVehicles.filter(
+//       vehicle =>
+//         filters.location === '' ||
+//         vehicle.location.toLowerCase().includes(formattedLocation.toLowerCase())
+//     );
+
+//     // Фильтруем по остальным фильтрам
+//     const results = locationFilteredVehicles.filter(vehicle => {
+//       const matchesEquipment = Object.keys(filters).every(filter => {
+//         switch (filter) {
+//           case 'location':
+//             return true; // Местоположение уже проверено
+//           case 'carType':
+//             return (
+//               filters[filter] === '' ||
+//               filters[filter].toLowerCase().replace(/\s/g, '') === vehicle.form.toLowerCase()
+//             );
+//           case 'AC':
+//             return (
+//               filters[filter] === false ||
+//               filters[filter] === Boolean(vehicle.details['airConditioner'])
+//             );
+//           case 'Automatic':
+//             return (
+//               filters[filter] === false ||
+//               vehicle.transmission.toLowerCase() === filter.toLowerCase()
+//             );
+//           default:
+//             return (
+//               filters[filter] === false || filters[filter] === Boolean(vehicle.details[filter])
+//             );
+//         }
+//       });
+
+//       return matchesEquipment;
+//     });
+
+//     console.log('Filtered Vehicles:', results);
+//     setFilteredVehicles(results);
+//     setHasSearched(true);
+//   };
+
+//   return (
+//     <>
+//       <div className={css.container}>
+//         <label className={css.lbl}>Location</label>
+//         <div className={css.wrapper}>
+//           <input
+//             type="text"
+//             className={css.inp}
+//             placeholder="Enter city"
+//             value={filters.location}
+//             onChange={handleLocationChange}
+//           />
+//           <div className={css.iconContainer}>
+//             <SlLocationPin className={css.iconS} />
+//           </div>
+//         </div>
+//       </div>
+
+//       <p className={css.gap}>Filters</p>
+//       <h3 className={css.title}>Vehicle Equipment</h3>
+//       <hr className={css.line} />
+
+//       <ul className={css.checkBoxList}>
+//         {['AC', 'Automatic', 'kitchen', 'TV', 'shower'].map(equipment => (
+//           <li key={equipment} className={`${css.item} ${filters[equipment] ? css.checked : ''}`}>
+//             <label className={css.padd}>
+//               <input
+//                 type="checkbox"
+//                 name={equipment}
+//                 value={equipment}
+//                 checked={filters[equipment]}
+//                 onChange={handleCheckboxChange}
+//                 className={css.check}
+//               />
+//               <svg width={32} height={32} className={css.icon}>
+//                 <use
+//                   href={`${svg}#${
+//                     equipmentIcons[equipment.charAt(0).toUpperCase() + equipment.slice(1)]
+//                   }`}
+//                 />
+//               </svg>
+//               <span className={`${css.txt} ${css.spn}`}>
+//                 {equipment.charAt(0).toUpperCase() + equipment.slice(1)}
+//               </span>
+//             </label>
+//           </li>
+//         ))}
+//       </ul>
+
+//       <h3 className={css.title}>Vehicle Type</h3>
+//       <hr className={css.line} />
+
+//       <ul className={css.checkBoxList}>
+//         {['Van', 'Fully integrated', 'Alcove'].map(type => (
+//           <li key={type} className={`${css.item} ${filters.carType === type ? css.checked : ''}`}>
+//             <label>
+//               <input
+//                 type="radio"
+//                 name="carType"
+//                 value={type}
+//                 checked={filters.carType === type}
+//                 onChange={handleRadioChange}
+//                 className={css.check}
+//               />
+//               <svg width={40} height={28}>
+//                 <use href={`${svg}#${equipmentTypeIcons[type]}`} />
+//               </svg>
+//               <span className={css.txt}>{type}</span>
+//             </label>
+//           </li>
+//         ))}
+//       </ul>
+
+//       <button onClick={handleSearch} className={css.btn}>
+//         Search
+//       </button>
+
+//       <div>
+//         <ul>
+//           {hasSearched ? (
+//             filteredVehicles.length > 0 ? (
+//               filteredVehicles.map(vehicle => (
+//                 <li key={vehicle._id}>
+//                   {vehicle.form} - {vehicle.location}
+//                 </li>
+//               ))
+//             ) : (
+//               <li>No vehicles match the selected criteria.</li>
+//             )
+//           ) : null}
+//         </ul>
+//       </div>
+//     </>
+//   );
+// }

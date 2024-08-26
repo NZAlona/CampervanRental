@@ -1,6 +1,6 @@
 import css from '../pages/CatalogPage.module.css';
 import SideBar from '../components/SideBar';
-import CampersList from '../components/CampersList';
+// import CampersList from '../components/CampersList';
 import { fetchCampervans } from '../redux/operations';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -34,7 +34,7 @@ export default function CatalogPage() {
     <>
       <div className={css.container}>
         <SideBar />
-        <CampersList />
+        {/* <CampersList /> */}
       </div>
     </>
   );

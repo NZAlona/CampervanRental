@@ -1,0 +1,4 @@
+.mainCont {
+  display: flex;
+  gap: 64px;
+}

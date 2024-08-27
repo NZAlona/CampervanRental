@@ -4,30 +4,18 @@ import { SlLocationPin } from 'react-icons/sl';
 import css from '../components/CamperCard.module.css';
 import VansFeature from './VansFeature';
 import CamperModal from './Modal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function CamperCard({ filteredVehicles }) {
-  // const [favorites, setFavorites] = useState([]);
-
   const [open, setOpen] = useState(false);
   const [selectedCamper, setSelectedCamper] = useState(null);
+  const [favorites, setFavorites] = useState([]);
 
-  // const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-  // setFavorites(savedFavorites);
-
-  // const handleFavoriteClick = camper => {
-  //   const isAlreadyFavorite = favorites.some(fav => fav._id === camper._id);
-  //   let updatedFavorites;
-
-  //   if (isAlreadyFavorite) {
-  //     updatedFavorites = favorites.filter(fav => fav._id !== camper._id);
-  //   } else {
-  //     updatedFavorites = [...favorites, camper];
-  //   }
-
-  //   setFavorites(updatedFavorites);
-  //   localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-  // };
+  useEffect(() => {
+    // Загружаем из localStorage при инициализации компонента
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(savedFavorites);
+  }, []);
 
   const handleOpen = camper => {
     setSelectedCamper(camper);
@@ -37,6 +25,20 @@ export default function CamperCard({ filteredVehicles }) {
   const handleClose = () => {
     setOpen(false);
     setSelectedCamper(null);
+  };
+
+  const handleFavoriteClick = camper => {
+    const isAlreadyFavorite = favorites.some(fav => fav._id === camper._id);
+    let updatedFavorites;
+
+    if (isAlreadyFavorite) {
+      updatedFavorites = favorites.filter(fav => fav._id !== camper._id);
+    } else {
+      updatedFavorites = [...favorites, camper];
+    }
+
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
   return (
@@ -54,11 +56,10 @@ export default function CamperCard({ filteredVehicles }) {
                 <svg
                   width={24}
                   height={24}
-                  className={css.icon}
-                  // className={`${css.icon} ${
-                  //   favorites.some(fav => fav._id === vehicle._id) ? css.favorite : ''
-                  // }`}
-                  // onClick={() => handleFavoriteClick(vehicle)}
+                  className={`${css.icon} ${
+                    favorites.some(fav => fav._id === vehicle._id) ? css.favorite : ''
+                  }`}
+                  onClick={() => handleFavoriteClick(vehicle)}
                 >
                   <use href={svg + '#icon-heart'}></use>
                 </svg>

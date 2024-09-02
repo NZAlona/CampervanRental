@@ -105,6 +105,15 @@ export default function VehicleEquip() {
     console.log('Filtered Vehicles:', results);
     setFilteredVehicles(results);
     setHasSearched(true);
+    setFilters({
+      AC: false,
+      Automatic: false,
+      kitchen: false,
+      TV: false,
+      shower: false,
+      carType: '',
+      location: '',
+    });
   };
 
   return (

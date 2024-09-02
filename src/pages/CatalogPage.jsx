@@ -34,7 +34,6 @@ export default function CatalogPage() {
     <>
       <div className={css.container}>
         <SideBar />
-        {/* <CampersList /> */}
       </div>
     </>
   );

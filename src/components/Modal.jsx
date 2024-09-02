@@ -9,6 +9,8 @@ import { useState } from 'react';
 import VansFeature from './VansFeature';
 import BookForm from './BookForm';
 import Rating from '../components/Rating';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const style = {
   position: 'absolute',
@@ -155,10 +157,19 @@ export default function CamperModal({ open, handleClose, camper }) {
                   </ul>
                 </div>
               )}
+
               <BookForm />
             </div>
           </Box>
         </Modal>
+        <ToastContainer
+          position="top-center"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={true}
+          theme="light"
+        />
       </div>
     </>
   );

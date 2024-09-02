@@ -7,6 +7,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 
+import { toast } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const FormSchema = Yup.object().shape({
   firstName: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
@@ -44,10 +48,14 @@ const DatePickerField = ({ field, form }) => {
 };
 
 export default function BookForm() {
+  const notify = () =>
+    toast.success('Your car has been successfully booked. Thank you for chossing our services!');
+
   return (
     <div className={css.wrapper}>
       <h2 className={css.title}>Book your campervan now</h2>
       <p className={css.text}>Stay connected! We are always ready to help you.</p>
+
       <Formik
         initialValues={{
           firstName: '',
@@ -58,6 +66,7 @@ export default function BookForm() {
         validationSchema={FormSchema}
         onSubmit={(values, actions) => {
           console.log(values);
+          notify();
           actions.resetForm();
         }}
       >
@@ -69,7 +78,6 @@ export default function BookForm() {
               </div>
               <Field name="firstName" placeholder="Name" className={css.field} />
             </div>
-
             <div className={css.formGroup}>
               <div className={css.errorContainer}>
                 <ErrorMessage name="email" component="span" className={css.error} />
@@ -82,14 +90,12 @@ export default function BookForm() {
                 className={css.field}
               />
             </div>
-
             <div className={css.formGroup}>
               <div className={css.errorContainer}>
                 <ErrorMessage name="data" component="span" className={css.error} />
               </div>
               <Field name="data" component={DatePickerField} />
             </div>
-
             <div className={css.formGroup}>
               <Field
                 as="textarea"
@@ -100,7 +106,6 @@ export default function BookForm() {
                 className={css.comment}
               />
             </div>
-
             <button type="submit" className={css.btn}>
               Submit
             </button>

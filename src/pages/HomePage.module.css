@@ -1,11 +1,6 @@
-/* .wrapper {
-  /* max-width: 1440px;
-  margin: 0 auto; */
-/* display: flex;
-  justify-content: center; */
-
 .title {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: 'Intel';
+  font-size: 28px;
   text-align: center;
   line-height: 1.4;
 }
